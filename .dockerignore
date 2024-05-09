@@ -1,5 +1,29 @@
-node_modules
-coverage
-esm
-dist
-build
+# Ignore by default
+**
+
+# Specific contents
+!/.config
+!/locales
+!/packages
+!/plugins
+!/scripts
+!/.eslintignore
+!/.eslintrc.js
+!/.npmignore
+!/.prettierignore
+!/babel.config.js
+!/jest.config.js
+!/lerna.json
+!/LICENSE
+!/Makefile
+!/package-lock.json
+!/package.json
+!/README.md
+!/tsconfig.esm.json
+!/tsconfig.esm.json
+!/tsconfig.test.json
+
+# NOTE Do not add anything after this comment
+.podman
+.docker
+.kube
