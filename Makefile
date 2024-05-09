@@ -1,5 +1,14 @@
-
 .DEFAULT_GOAL: help
+
+ifneq (,$(shell which podman-compose 2>/dev/null))
+COMPOSE ?= podman-compose
+endif
+ifneq (,$(shell which docker-compose 2>/dev/null))
+COMPOSE ?= docker-compose
+endif
+ifeq (,$(COMPOSE))
+COMPOSE ?= false
+endif
 
 .PHONY: help
 help:  ## Print out the help content
@@ -24,3 +33,19 @@ lint: node_modeles  ## Run linter
 .PHONY: watch
 watch: node_modeles  ## Watch for changes
 	npm run watch
+
+.PHONY: compose-build
+compose-build:  ## Build containers from docker-compose
+	$(COMPOSE) build
+
+.PHONY: compose-up
+compose-up:  ## Start containers locally
+	$(COMPOSE) up
+
+.PHONY: compose-down
+compose-down:  ## Tear down containers locally
+	$(COMPOSE) down
+
+.PHONY: compose-clean
+compose-clean:
+	$(COMPOSE) down --volumes --remove-orphans
